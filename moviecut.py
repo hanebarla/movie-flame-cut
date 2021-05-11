@@ -13,7 +13,11 @@ def movie_cut(movie_path):
     dir_path = movie_path[:ex_place]
     print(dir_path)
 
-    os.makedirs(dir_path, exist_ok=True)
+    if os.path.isdir(dir_path):
+        print(dir_path + "is exist")
+        return
+
+    os.makedirs(dir_path)
     base_path = os.path.join(dir_path, "demo")
 
     digit = len(str(int(cap.get(cv2.CAP_PROP_FRAME_COUNT))))

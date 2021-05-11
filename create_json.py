@@ -7,15 +7,20 @@ import json
 parser = argparse.ArgumentParser()
 parser.add_argument("--imgdir", default=".")
 parser.add_argument("--interval", default=1, type=int)
+parser.add_argument("--json_add", default=" ")
 
 args = parser.parse_args()
+
+if args.json_add != " ":
+    with open(args.json_add, "r") as f:
+        all_path = json.load(f)
+else:
+    all_path = []
 
 interval = args.interval
 img_list = os.listdir(args.imgdir)
 num = len(img_list)
 num_order = len(str(num))
-
-all_path = []
 
 for i in range(num-2):
     if (i+2)*interval > (num - 1):
